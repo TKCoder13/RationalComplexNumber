@@ -5,6 +5,7 @@
 #include <string>
 #include <cmath>
 #include <iostream>
+#include "RationalNumber.cpp"
 
 using namespace std;
 
