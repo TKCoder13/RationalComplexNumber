@@ -3,11 +3,12 @@
 #include <string>
 #include <cmath>
 #include <typeinfo>
+#include <cinttypes>
 
 using namespace std;
 
-int numerator;
-int denominator;
+uint64_t numerator;
+uint64_t denominator;
 
 /* CONSTRUCTORS */
 

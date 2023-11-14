@@ -1,11 +1,12 @@
 
 #ifndef RationalNumber_h
 #define RationalNumber_h
+#include "RationalNumber.cpp"
 
 #include <string>
 #include <cmath>
 #include <iostream>
-#include "RationalNumber.cpp"
+#include <cinttypes>
 
 using namespace std;
 
