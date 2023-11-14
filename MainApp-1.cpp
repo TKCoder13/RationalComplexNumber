@@ -1,6 +1,6 @@
 #include <iostream>
-#include "ComplexNumber.cpp"
-#include "RationalNumber.cpp"
+#include "ComplexNumber.h"
+#include "RationalNumber.h"
 
 using namespace std;
 
