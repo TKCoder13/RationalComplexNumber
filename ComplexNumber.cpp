@@ -13,15 +13,13 @@ RationalNumber imag;
 
 ComplexNumber::ComplexNumber(): real(), imag() {}
 
-ComplexNumber::ComplexNumber(int realNum, int realDenom, int imagNum, int imagDenom) {
-    this->real.setNumerator(realNum);
-    this->real.setDenominator(realDenom);
-    this->imag.setNumerator(imagNum);
-    this->imag.setDenominator(imagDenom);
+ComplexNumber::ComplexNumber(double real, double imag) {
+    this->setReal(real);
+    this->setImag(imag);
 }
 
 ComplexNumber::ComplexNumber(const ComplexNumber &src) {
-    this->real.setNumerator(src->real.getNumerator());
+    this->real.setNumerator(src.real.getNumerator());
     this->real.setDenominator(*src.real.getDenominator());
     this->imag.setNumerator(&src.imag.getNumerator());
     this->imag.setDenominator(*src->imag.getDenominator());
@@ -30,11 +28,13 @@ ComplexNumber::ComplexNumber(const ComplexNumber &src) {
 ComplexNumber::~ComplexNumber() {}
 
 void ComplexNumber::setReal(double num) {
-    this->real = num;
+    this->real.setNumerator(num * RationalNumber::PRECISION);
+    this->real.setDenominator(PRECISION);
 }
 
 void ComplexNumber::setImag(double num) {
-    this->imag = num;
+    this->imag.setNumerator(num * RationalNumber::PRECISION);
+    this->imag.setDenominator(PRECISION);
 }
 
 double ComplexNumber::getReal() {
@@ -42,17 +42,17 @@ double ComplexNumber::getReal() {
 }
 
 double ComplexNumber::getImag() {
-    return this->imag;
+    return (double) this->imag.getNumerator() / this->imag.getDenominator();
 }
 
 string ComplexNumber::toString() {
     bool realNegative = false;
     bool imagNegative = false;
-    if (this->real < 0) realNegative = true;
-    if (this->imag < 0) imagNegative = true;
+    if (this->getReal() < 0) realNegative = true;
+    if (this->getImag() < 0) imagNegative = true;
     
-    double realOutput = std::abs(this->real);
-    double imagOutput = std::abs(this->imag);
+    double realOutput = std::abs(this->getReal());
+    double imagOutput = std::abs(this->getImag());
 
     if (realOutput == 0.0 && imagOutput == 0.0) {
         return "0";
@@ -77,15 +77,15 @@ string ComplexNumber::toString() {
 }
 
 ComplexNumber ComplexNumber::add(ComplexNumber rhs) {
-    double realOutput = this->real + rhs.real;
-    double imagOutput = this->imag + rhs.imag;
+    double realOutput = this->getReal() + rhs.getReal();
+    double imagOutput = this->getImag() + rhs.getImag();
     ComplexNumber output(realOutput, imagOutput);
     return output;
 }
 
 ComplexNumber ComplexNumber::sub(ComplexNumber rhs) {
-    double realOutput = this->real - rhs.real;
-    double imagOutput = this->imag - rhs.imag;
+    double realOutput = this->getReal() - rhs.getReal();
+    double imagOutput = this->getImag() - rhs.getImag();
     ComplexNumber output(realOutput, imagOutput);
     return output;
 }

@@ -11,7 +11,7 @@ class ComplexNumber : private RationalNumber {
     public:
         // -- Constructors
         ComplexNumber();
-        ComplexNumber(double realNum, double imagNum);
+        ComplexNumber(double real, double imag);
         ComplexNumber(const ComplexNumber &src);
         ~ComplexNumber();
 

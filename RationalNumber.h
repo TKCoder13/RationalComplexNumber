@@ -27,8 +27,8 @@ class RationalNumber {
         string toString();
         bool equals(RationalNumber rhs);
 
-        int getNumerator();
-        int getDenominator();
+        const int getNumerator();
+        const int getDenominator();
     
         void setNumerator(int num);
         void setDenominator(int num);
@@ -47,6 +47,9 @@ class RationalNumber {
     
         /* METHODS */
         int getGCD(int num1, int num2);
+
+    protected:
+        const uint64_t PRECISION = 100000;
 };
 
 #endif /* RationalNumber_h */

@@ -33,11 +33,11 @@ RationalNumber::~RationalNumber() {}
 
 /* METHODS */
 
-int RationalNumber::getNumerator() {
+const int RationalNumber::getNumerator() {
     return this->numerator;
 }
 
-int RationalNumber::getDenominator() {
+const int RationalNumber::getDenominator() {
     return this->denominator;
 }
 
