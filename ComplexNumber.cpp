@@ -28,13 +28,15 @@ ComplexNumber::ComplexNumber(const ComplexNumber &src) {
 ComplexNumber::~ComplexNumber() {}
 
 void ComplexNumber::setReal(double num) {
-    this->real.setNumerator(num * RationalNumber::PRECISION);
-    this->real.setDenominator(PRECISION);
+    uint64_t gcd = RationalNumber::getGCD((uint64_t) num * RationalNumber::PRECISION, PRECISION);
+    this->real.setNumerator(num * RationalNumber::PRECISION / gcd);
+    this->real.setDenominator(PRECISION / gcd);
 }
 
 void ComplexNumber::setImag(double num) {
-    this->imag.setNumerator(num * RationalNumber::PRECISION);
-    this->imag.setDenominator(PRECISION);
+    uint64_t gcd = RationalNumber::getGCD((uint64_t) num * RationalNumber::PRECISION, PRECISION);
+    this->imag.setNumerator(num * RationalNumber::PRECISION / gcd);
+    this->imag.setDenominator(PRECISION / gcd);
 }
 
 double ComplexNumber::getReal() {
