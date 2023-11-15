@@ -42,8 +42,8 @@ class RationalNumber {
     private:
 
         /* VARIABLES */
-        int numerator;
-        int denominator;
+        uint64_t numerator;
+        uint64_t denominator;
     
         /* METHODS */
         int getGCD(int num1, int num2);

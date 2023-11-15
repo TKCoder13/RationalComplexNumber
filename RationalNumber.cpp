@@ -71,19 +71,19 @@ bool RationalNumber::equals(RationalNumber rhs) {
 }
 
 string RationalNumber::toString() {
-    int currentNumerator = this->getNumerator();
-    int currentDenominator = this->getDenominator();
+    uint64_t currentNumerator = this->getNumerator();
+    uint64_t currentDenominator = this->getDenominator();
 
     // -- Checks for negative values
     bool isNegative = false;
     if (currentNumerator < 0) isNegative = !isNegative;
     if (currentDenominator < 0) isNegative = !isNegative;
 
-    currentNumerator = std::abs(currentNumerator);
-    currentDenominator = std::abs(currentDenominator);
+    currentNumerator = (uint64_t) std::abs((double)currentNumerator);
+    currentDenominator = (uint64_t) std::abs((double)currentDenominator);
 
-    int wholeNumber = std::abs(currentNumerator / currentDenominator);
-    int remainder = std::abs(currentNumerator % currentDenominator);
+    int wholeNumber = (uint64_t) std::abs((double)currentNumerator / currentDenominator);
+    int remainder = (uint64_t) std::abs((double)(currentNumerator % currentDenominator));
 
     // -- Reduce improper fractions
     int gcd = getGCD(remainder, currentDenominator);
