@@ -91,8 +91,8 @@ ComplexNumber ComplexNumber::sub(ComplexNumber rhs) {
 }
 
 ComplexNumber ComplexNumber::mult(ComplexNumber rhs) {
-    double realOutput = this->real * rhs.real;
-    double imagOutput = this->imag * rhs.imag;
+    double realOutput = this->getReal() * rhs.getReal();
+    double imagOutput = this->getImag() * rhs.getImag();
     ComplexNumber output(realOutput, imagOutput);
     return output;
 }
@@ -103,11 +103,11 @@ ComplexNumber ComplexNumber::div(ComplexNumber rhs) {
     double realOutput = 0;
     double imagOutput = 0;
     try {
-        if (rhs.real == 0 || rhs.imag == 0) {
+        if (rhs.getReal() == 0 || rhs.getImag() == 0) {
             throw divZeroException;
         } else {
-            realOutput = this->real / rhs.real;
-            imagOutput = this->imag / rhs.imag;
+            realOutput = this->getReal() / rhs.getReal();
+            imagOutput = this->getImag() / rhs.getImag();
         }
     } catch (const char* exception) {
         cout << "Exception: " << exception << endl;
