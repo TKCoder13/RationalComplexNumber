@@ -117,38 +117,38 @@ ComplexNumber ComplexNumber::div(ComplexNumber rhs) {
 } 
 
 double ComplexNumber::mag() {
-    double realOutput = this->real;
-    double imagOutput = this->imag;
+    double realOutput = this->getReal();
+    double imagOutput = this->getImag();
     double output = std::sqrt(std::pow(realOutput, 2) + std::pow(imagOutput, 2));
     return output;
 }
 
 ComplexNumber ComplexNumber::conj() {
-    double imagOutput = 0 - this->imag;
-    ComplexNumber output(this->real, imagOutput);
+    double imagOutput = 0 - this->getImag();
+    ComplexNumber output(this->getReal(), imagOutput);
 }
 
 ComplexNumber ComplexNumber::sqrt() {
     // -- sqrt(-1) = i
     // -- sqrt(i) = -1
-    if (this->real < 0 && this->imag < 0) {
-        double realOutput = std::sqrt(std::abs(this->imag));
-        double imagOutput = std::sqrt(std::abs(this->real));
+    if (this->getReal() < 0 && this->getImag() < 0) {
+        double realOutput = std::sqrt(std::abs(this->getImag()));
+        double imagOutput = std::sqrt(std::abs(this->getReal()));
         ComplexNumber output(realOutput, imagOutput);
         return output;
-    } else if (this->real < 0) {
+    } else if (this->getReal() < 0) {
         double realOutput = 0;
-        double imagOutput = std::sqrt(abs(this->real)) + std::sqrt(this->imag);
+        double imagOutput = std::sqrt(abs(this->getReal())) + std::sqrt(this->getImag());
         ComplexNumber output(realOutput, imagOutput);
         return output;
-    } else if (this->imag < 0) {
-        double realOutput = std::sqrt(this->real) + std::sqrt(std::abs(this->imag));
+    } else if (this->getImag() < 0) {
+        double realOutput = std::sqrt(this->getReal()) + std::sqrt(std::abs(this->getImag()));
         double imagOutput = 0;
         ComplexNumber output(realOutput, imagOutput);
         return output;
     }
-    double realOutput = std::sqrt(this->real);
-    double imagOutput = std::sqrt(this->imag);
+    double realOutput = std::sqrt(this->getReal());
+    double imagOutput = std::sqrt(this->getImag());
     ComplexNumber output(realOutput, imagOutput);
     return output;
 }
@@ -156,7 +156,7 @@ ComplexNumber ComplexNumber::sqrt() {
 bool ComplexNumber::equals(ComplexNumber& rhs) {
     if (typeid(*this) != typeid(rhs))
         return false;
-    if (this->real == rhs.real && this->imag == rhs.imag)
+    if (this->getReal() == rhs.getReal() && this->getImag() == rhs.getImag())
         return true;
     return false;
 }
