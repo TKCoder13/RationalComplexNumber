@@ -44,12 +44,10 @@ class RationalNumber {
         /* VARIABLES */
         uint64_t numerator;
         uint64_t denominator;
-    
-        /* METHODS */
-        int getGCD(int num1, int num2);
 
     protected:
         const uint64_t PRECISION = 100000;
+        uint64_t getGCD(uint64_t num1, uint64_t num2);
 };
 
 #endif /* RationalNumber_h */
