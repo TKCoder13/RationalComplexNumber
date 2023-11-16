@@ -32,6 +32,7 @@ class ComplexNumber : private RationalNumber {
         ComplexNumber sqrt();
 
         bool equals(ComplexNumber& rhs);
+        
         ComplexNumber& operator=(const ComplexNumber& rhs){ 
             this->real.setNumerator(rhs.real.getNumerator()); 
             this->real.setDenominator(rhs.real.getDenominator()); 

@@ -1,5 +1,3 @@
-#include "RationalNumber.cpp"
-
 #include <string>
 #include <cmath>
 #include <iostream>

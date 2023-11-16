@@ -1,5 +1,4 @@
 #include "ComplexNumber.h"
-#include "RationalNumber.h"
 
 #include <string>
 #include <typeinfo>
@@ -20,9 +19,9 @@ ComplexNumber::ComplexNumber(double real, double imag) {
 
 ComplexNumber::ComplexNumber(const ComplexNumber &src) {
     this->real.setNumerator(src.real.getNumerator());
-    this->real.setDenominator(*src.real.getDenominator());
-    this->imag.setNumerator(&src.imag.getNumerator());
-    this->imag.setDenominator(*src->imag.getDenominator());
+    this->real.setDenominator(src.real.getDenominator());
+    this->imag.setNumerator(src.imag.getNumerator());
+    this->imag.setDenominator(src.imag.getDenominator());
 }
 
 ComplexNumber::~ComplexNumber() {}
