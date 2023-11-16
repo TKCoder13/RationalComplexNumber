@@ -1,6 +1,3 @@
-
-#pragma once
-
 #include "RationalNumber.cpp"
 
 #include <string>
