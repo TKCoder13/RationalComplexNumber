@@ -4,6 +4,7 @@
 #include <cmath>
 #include <typeinfo>
 #include <cinttypes>
+#include <iostream>
 
 using namespace std;
 
@@ -13,11 +14,13 @@ uint64_t denominator;
 /* CONSTRUCTORS */
 
 // -- Default Constructor
-RationalNumber::RationalNumber() 
-: numerator(0), denominator(1) {}
+RationalNumber::RationalNumber() {
+    this->numerator = 0;
+    this->denominator = 1;
+}
 
 // -- Overload Constructor
-RationalNumber::RationalNumber(int num, int denom) {
+RationalNumber::RationalNumber(uint64_t num, uint64_t denom) {
     this->numerator = num;
     this->denominator = denom;
 }
@@ -33,19 +36,19 @@ RationalNumber::~RationalNumber() {}
 
 /* METHODS */
 
-const int RationalNumber::getNumerator() {
+uint64_t RationalNumber::getNumerator() {
     return this->numerator;
 }
 
-const int RationalNumber::getDenominator() {
+uint64_t RationalNumber::getDenominator() {
     return this->denominator;
 }
 
-void RationalNumber::setNumerator(int num) {
+void RationalNumber::setNumerator(uint64_t num) {
     this->numerator = num;
 }
 
-void RationalNumber::setDenominator(int num) {
+void RationalNumber::setDenominator(uint64_t num) {
     char exception[] = "Denominator cannot be 0";
     char* zeroException = exception;
     try {
@@ -63,10 +66,9 @@ void RationalNumber::setDenominator(int num) {
 
 
 bool RationalNumber::equals(RationalNumber rhs) {
-    if (typeid(*this) == typeid(rhs)) {
-        if (this->numerator == rhs.numerator && this->numerator == rhs.denominator) 
+    if (typeid(*this) == typeid(rhs))
+        if (this->numerator == rhs.numerator && this->denominator == rhs.denominator) 
             return true;
-    }
     return false;
 }
 
@@ -79,14 +81,14 @@ string RationalNumber::toString() {
     if (currentNumerator < 0) isNegative = !isNegative;
     if (currentDenominator < 0) isNegative = !isNegative;
 
-    currentNumerator = (uint64_t) std::abs((double)currentNumerator);
-    currentDenominator = (uint64_t) std::abs((double)currentDenominator);
+    currentNumerator = std::abs(currentNumerator);
+    currentDenominator = std::abs(currentDenominator);
 
-    int wholeNumber = (uint64_t) std::abs((double)currentNumerator / currentDenominator);
-    int remainder = (uint64_t) std::abs((double)(currentNumerator % currentDenominator));
+    uint64_t wholeNumber = std::abs(currentNumerator / currentDenominator);
+    uint64_t remainder = std::abs(currentNumerator % currentDenominator);
 
     // -- Reduce improper fractions
-    int gcd = getGCD(remainder, currentDenominator);
+    uint64_t gcd = getGCD(remainder, currentDenominator);
     if (gcd > 1) {
         remainder = remainder / gcd;
         currentDenominator = currentDenominator / gcd;
@@ -133,17 +135,17 @@ uint64_t RationalNumber::getGCD(uint64_t num1, uint64_t num2) {
 }
 
 RationalNumber RationalNumber::add(RationalNumber rhs) {
-    int leftNumerator = this->getNumerator() * rhs.getDenominator();
-    int rightNumerator = rhs.getNumerator() * this->getDenominator();
+    uint64_t leftNumerator = this->getNumerator() * rhs.getDenominator();
+    uint64_t rightNumerator = rhs.getNumerator() * this->getDenominator();
 
-    int tempNumerator = leftNumerator + rightNumerator;
-    int tempDenominator = this->getDenominator() * rhs.getDenominator();
+    uint64_t tempNumerator = leftNumerator + rightNumerator;
+    uint64_t tempDenominator = this->getDenominator() * rhs.getDenominator();
     
-    int endNumerator;
-    int endDenominator;
+    uint64_t endNumerator;
+    uint64_t endDenominator;
 
     // -- Simplify
-    int gcd = getGCD(tempNumerator, tempDenominator);
+    uint64_t gcd = getGCD(tempNumerator, tempDenominator);
     if (gcd == 1) {
         RationalNumber output(tempNumerator, tempDenominator);
         return output;
@@ -156,16 +158,16 @@ RationalNumber RationalNumber::add(RationalNumber rhs) {
 }
 
 RationalNumber RationalNumber::sub(RationalNumber rhs) {
-    int leftNumerator = this->getNumerator() * rhs.getDenominator();
-    int rightNumerator = rhs.getNumerator() * this->getDenominator();
+    uint64_t leftNumerator = this->getNumerator() * rhs.getDenominator();
+    uint64_t rightNumerator = rhs.getNumerator() * this->getDenominator();
 
-    int tempNumerator = leftNumerator - rightNumerator;
-    int tempDenominator = this->getDenominator() * rhs.getDenominator();
+    uint64_t tempNumerator = leftNumerator - rightNumerator;
+    uint64_t tempDenominator = this->getDenominator() * rhs.getDenominator();
     
-    int endNumerator;
-    int endDenominator;
+    uint64_t endNumerator;
+    uint64_t endDenominator;
 
-    int gcd = getGCD(tempNumerator, tempDenominator);
+    uint64_t gcd = getGCD(tempNumerator, tempDenominator);
     if (gcd == 1) {
         RationalNumber output(tempNumerator, tempDenominator);
         return output;
@@ -178,27 +180,37 @@ RationalNumber RationalNumber::sub(RationalNumber rhs) {
 }
 
 RationalNumber RationalNumber::mult(RationalNumber rhs) {
-    int currentNumerator = this->getNumerator() * rhs.getNumerator();
-    int currentDenominator = this->getDenominator() * rhs.getDenominator();
+    uint64_t currentNumerator = this->getNumerator() * rhs.getNumerator();
+    uint64_t currentDenominator = this->getDenominator() * rhs.getDenominator();
     RationalNumber output(currentNumerator, currentDenominator);
     return output;
 }
 
 RationalNumber RationalNumber::div(RationalNumber rhs) {
+    char divZeroMessage[] = "Not divisible by 0";
+    char *divZeroException = divZeroMessage;
     try {
-        int outNumerator = this->getNumerator() * rhs.getDenominator();
-        int outDenominator = this->getDenominator() * rhs.getNumerator();
+        uint64_t outNumerator = this->getNumerator() * rhs.getDenominator();
+        uint64_t outDenominator = this->getDenominator() * rhs.getNumerator();
         if (outDenominator != 0) {
             RationalNumber output(outNumerator, outDenominator);
             return output;
         } else {
-            throw outDenominator;
+            throw divZeroException;
         }
-    } catch (char* exception) {
-        cout << "Cannot be divisible by 0" << endl;
+    } catch (const char* exception) {
+        cout << exception << endl;
     }
 }
 
 double RationalNumber::sqrt() {
-    return 0.0;
+    double sqrtOutput;
+    char negativeNumErrorMessage[] = "You cannot square root a negative number";
+    char *negativeNumError = negativeNumErrorMessage;
+    if (std::sqrt((double) this->getNumerator() / (double) this->getDenominator()) < 0) {
+        throw negativeNumError;
+    } else {
+        sqrtOutput = std::sqrt((double) this->getNumerator() / (double) this->getDenominator());
+    }
+    return sqrtOutput;
 }

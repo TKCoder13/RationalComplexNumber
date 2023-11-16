@@ -1,3 +1,5 @@
+#pragma once
+
 #include "ComplexNumber.h"
 #include "RationalNumber.h"
 

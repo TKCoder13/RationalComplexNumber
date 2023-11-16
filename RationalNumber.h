@@ -1,6 +1,6 @@
 
-#ifndef RationalNumber_h
-#define RationalNumber_h
+#pragma once
+
 #include "RationalNumber.cpp"
 
 #include <string>
@@ -16,7 +16,7 @@ class RationalNumber {
         // -- Default Constructor
         RationalNumber();
         // -- Overload Constructor
-        RationalNumber(int numerator, int denominator);
+        RationalNumber(uint64_t numerator, uint64_t denominator);
         // -- Copy Constructor
         RationalNumber(const RationalNumber &src);
         // -- Deconstructor
@@ -27,11 +27,11 @@ class RationalNumber {
         string toString();
         bool equals(RationalNumber rhs);
 
-        const int getNumerator();
-        const int getDenominator();
+        uint64_t getNumerator();
+        uint64_t getDenominator();
     
-        void setNumerator(int num);
-        void setDenominator(int num);
+        void setNumerator(uint64_t num);
+        void setDenominator(uint64_t num);
 
         RationalNumber add(RationalNumber rhs);
         RationalNumber sub(RationalNumber rhs);
@@ -49,5 +49,3 @@ class RationalNumber {
         const uint64_t PRECISION = 100000;
         uint64_t getGCD(uint64_t num1, uint64_t num2);
 };
-
-#endif /* RationalNumber_h */

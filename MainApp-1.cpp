@@ -1,6 +1,9 @@
+#pragma once
+
 #include <iostream>
-#include "ComplexNumber.h"
 #include "RationalNumber.h"
+#include "ComplexNumber.h"
+
 
 using namespace std;
 
