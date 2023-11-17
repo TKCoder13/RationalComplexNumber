@@ -22,8 +22,8 @@ class RationalNumber {
         string toString();
         bool equals(RationalNumber rhs);
 
-        uint64_t getNumerator();
-        uint64_t getDenominator();
+        const uint64_t getNumerator();
+        const uint64_t getDenominator();
     
         void setNumerator(uint64_t num);
         void setDenominator(uint64_t num);
