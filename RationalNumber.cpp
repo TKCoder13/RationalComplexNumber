@@ -36,11 +36,11 @@ RationalNumber::~RationalNumber() {}
 
 /* METHODS */
 
-uint64_t RationalNumber::getNumerator() {
+const uint64_t RationalNumber::getNumerator() {
     return this->numerator;
 }
 
-uint64_t RationalNumber::getDenominator() {
+const uint64_t RationalNumber::getDenominator() {
     return this->denominator;
 }
 
