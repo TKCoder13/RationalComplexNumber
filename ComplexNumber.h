@@ -1,11 +1,9 @@
 #include <string>
 #include <iostream>
-#include "ComplexNumber.cpp"
 
 using namespace std;
 
-class ComplexNumber : private RationalNumber {
-
+class ComplexNumber : public RationalNumber {
     public:
         // -- Constructors
         ComplexNumber();

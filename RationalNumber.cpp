@@ -81,11 +81,11 @@ string RationalNumber::toString() {
     if (currentNumerator < 0) isNegative = !isNegative;
     if (currentDenominator < 0) isNegative = !isNegative;
 
-    currentNumerator = std::abs(currentNumerator);
-    currentDenominator = std::abs(currentDenominator);
+    currentNumerator = (uint64_t) std::abs((double) currentNumerator);
+    currentDenominator = (uint64_t) std::abs((double) currentDenominator);
 
-    uint64_t wholeNumber = std::abs(currentNumerator / currentDenominator);
-    uint64_t remainder = std::abs(currentNumerator % currentDenominator);
+    uint64_t wholeNumber = (uint64_t) std::abs((double) (currentNumerator / currentDenominator));
+    uint64_t remainder = (uint64_t) std::abs((double) (currentNumerator % currentDenominator));
 
     // -- Reduce improper fractions
     uint64_t gcd = getGCD(remainder, currentDenominator);
